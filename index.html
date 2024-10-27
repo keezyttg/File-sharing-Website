@@ -24,16 +24,27 @@
       <section class="share">
         <!-- Upload Section -->
         <div id="uploadSection">
-          <div class="input-group">
+          <div id="inputgroup" class="input-group">
             <label>Enter your text to share:</label>
             <textarea
               placeholder="Type or paste your text here..."
               id="uploadText"
             ></textarea>
+            <!-- Drag and Drop -->
+
+            <div id = "file-upload" class="file-upload">
+              <label>Or upload a file:</label>
+              <input
+                type="file"
+                id="fileInput"
+                accept=".txt,.json,.html,.css,.js,.jpg,.jpeg,.pdf"
+              />
+            </div>
           </div>
           <button id="generate" onclick="generateCode()">
             Generate Access Code
           </button>
+
           <div class="result" id="uploadResult" style="display: none">
             <label>Your access code:</label>
             <div class="code">ABC123</div>
