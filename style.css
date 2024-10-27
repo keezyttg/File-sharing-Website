@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+  button {
+    padding: 10px;
+  }
+}
+
+button:hover {
+  background: #155ab6; /* A slightly darker shade */
+}
+
+* {
+  box-sizing: border-box;
+  font-style: "Poppins", Arial, Verdana;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  color: blue;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background: #155ab6; /* A slightly darker shade */
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+/* Toggle */
+
+.toggleCheckbox {
+  display: none;
+}
+.toggleContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 400px; /* Increase this value to make it longer */
+  margin: 0 auto; /* This centers the toggle */
+  border: 3px solid #343434;
+  border-radius: 20px;
+  background: #343434;
+  font-weight: bold;
+  color: #343434;
+  cursor: pointer;
+}
+.toggleContainer div {
+  padding: 10px; /* You can adjust padding for more height */
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+}
+.toggleCheckbox {
+  display: none;
+}
+.toggleCheckbox:checked + .toggleContainer div:first-child {
+  color: white;
+}
+.toggleCheckbox:checked + .toggleContainer div:last-child {
+  color: #343434;
+}
+.toggleCheckbox + .toggleContainer div:first-child {
+  color: #343434;
+}
+.toggleCheckbox + .toggleContainer div:last-child {
+  color: white;
+}
+.toggleContainer::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0%;
+  border-radius: 20px;
+  background: white;
+  transition: all 0.3s;
+}
+.toggleCheckbox:checked + .toggleContainer::before {
+  left: 50%;
+}
+.toggleContainer div:first-child,
+.toggleContainer div:last-child {
+  flex: 1; /* Make sure they take equal space */
+}
+
+textarea:focus,
+input:focus {
+  border-color: #1a73e8; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
