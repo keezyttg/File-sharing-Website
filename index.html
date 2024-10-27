@@ -31,29 +31,30 @@
               id="uploadText"
             ></textarea>
           </div>
-          <button onclick="generateCode()">Generate Access Code</button>
-          <div class="result" id="uploadResult">
-            <label style="display:none;">Your access code:</label>
-            <div class="code" style="display:none;">ABC123</div>
+          <button id= "generate" onclick="generateCode()">Generate Access Code</button>
+          <div class="result" id="uploadResult" style="display:none;">
+            <label>Your access code:</label>
+            <div class="code" >ABC123</div>
           </div>
         </div>
 
         <!-- Download Section -->
         <div id="downloadSection" style="display:none;">
           <div class="input-group">
-            <label>Enter the Access Code:</label>
-            <input 
-              type="text" 
-              id="accessCode"
-              maxlength="6"
-              placeholder="Enter 6-character code..."
-            />
+              <label>Enter the Access Code:</label>
+              <input
+                  type="text"
+                  id="accessCode"
+                  maxlength="6"
+                  placeholder="Enter 6-character code..."
+              />
           </div>
           <div class="result" id="downloadResult">
-            <button id="retrieveData">Retrieve Data</button>
-            <div class="retrieved-text"></div>
+              <button id="retrieveData">Retrieve Data</button>
+              <div class="retrieved-text"></div>
+              <!-- Copy button will be added here -->
           </div>
-        </div>
+      </div>      
       </section>
     </div>
   </body>
