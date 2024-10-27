@@ -27,7 +27,6 @@ button:hover {
   margin: 20px 0;
 }
 
-
 * {
   box-sizing: border-box;
   font-style: "Poppins", Arial, Verdana;
@@ -74,7 +73,7 @@ input {
   margin-bottom: 20px;
 }
 
-#uploadText{
+#uploadText {
   height: 200px;
   width: 550px;
 }
@@ -163,8 +162,12 @@ input:focus {
 
 /* Add loading animation */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .result {

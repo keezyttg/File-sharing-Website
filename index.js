@@ -57,55 +57,58 @@ backToInput.onclick = () => {
 };
 uploadResult.appendChild(backToInput);
 
-const retrieveButton = document.getElementById('retrieveData');
-const accessCodeInput = document.getElementById('accessCode');
-const retrievedTextDiv = document.querySelector('.retrieved-text');
+const retrieveButton = document.getElementById("retrieveData");
+const accessCodeInput = document.getElementById("accessCode");
+const retrievedTextDiv = document.querySelector(".retrieved-text");
 
-retrieveButton.addEventListener('click', () => {
-    console.log("Retrieve button clicked");
-    const code = accessCodeInput.value.trim().toUpperCase();
-    
-    if (!code) {
-        window.alert("Please enter an access code!");
-        return;
+retrieveButton.addEventListener("click", () => {
+  console.log("Retrieve button clicked");
+  const code = accessCodeInput.value.trim().toUpperCase();
+
+  if (!code) {
+    window.alert("Please enter an access code!");
+    return;
+  }
+
+  // Get stored text from localStorage
+  const retrievedText = localStorage.getItem(code);
+
+  if (retrievedText) {
+    retrievedTextDiv.textContent = retrievedText;
+    retrievedTextDiv.style.display = "block";
+
+    // Create and add copy button after text is retrieved
+    const copyRetrievedButton = document.createElement("button");
+    copyRetrievedButton.textContent = "Copy Text";
+    copyRetrievedButton.className = "copy-button";
+
+    // Remove any existing copy button
+    const existingCopyButton = document.querySelector(
+      "#downloadResult .copy-button"
+    );
+    if (existingCopyButton) {
+      existingCopyButton.remove();
     }
 
-    // Get stored text from localStorage
-    const retrievedText = localStorage.getItem(code);
-    
-    if (retrievedText) {
-        retrievedTextDiv.textContent = retrievedText;
-        retrievedTextDiv.style.display = 'block';
-        
-        // Create and add copy button after text is retrieved
-        const copyRetrievedButton = document.createElement('button');
-        copyRetrievedButton.textContent = "Copy Text";
-        copyRetrievedButton.className = 'copy-button';
-        
-        // Remove any existing copy button
-        const existingCopyButton = document.querySelector('#downloadResult .copy-button');
-        if (existingCopyButton) {
-            existingCopyButton.remove();
-        }
-        
-        // Add click handler for copy button
-        copyRetrievedButton.onclick = () => {
-            navigator.clipboard.writeText(retrievedTextDiv.textContent)
-                .then(() => {
-                    copyRetrievedButton.textContent = "Copied!";
-                    setTimeout(() => {
-                        copyRetrievedButton.textContent = "Copy Text";
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('Failed to copy:', err);
-                    alert('Failed to copy text');
-                });
-        };
-        
-        // Add button after the retrieved text
-        retrievedTextDiv.parentNode.appendChild(copyRetrievedButton);
-    } else {
-        window.alert("Invalid code or expired data");
-    }
+    // Add click handler for copy button
+    copyRetrievedButton.onclick = () => {
+      navigator.clipboard
+        .writeText(retrievedTextDiv.textContent)
+        .then(() => {
+          copyRetrievedButton.textContent = "Copied!";
+          setTimeout(() => {
+            copyRetrievedButton.textContent = "Copy Text";
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy:", err);
+          alert("Failed to copy text");
+        });
+    };
+
+    // Add button after the retrieved text
+    retrievedTextDiv.parentNode.appendChild(copyRetrievedButton);
+  } else {
+    window.alert("Invalid code or expired data");
+  }
 });
