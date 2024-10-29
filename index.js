@@ -6,10 +6,9 @@ const uploadText = document.getElementById("uploadText");
 const uploadResult = document.getElementById("uploadResult");
 const codeDisplay = document.querySelector(".code"); // Add this for the code display
 // Drag and Drop Variables
-const dropZone = document.getElementById('drop_zone');
-const fileInput = document.getElementById('fileInput');
-const inputgroup = document.getElementById('inputgroup');
-
+const dropZone = document.getElementById("drop_zone");
+const fileInput = document.getElementById("fileInput");
+const inputgroup = document.getElementById("inputgroup");
 
 // Toggle between Upload and Download sections
 toggleCheckbox.addEventListener("change", () => {
@@ -28,7 +27,7 @@ toggleCheckbox.addEventListener("change", () => {
 
 // Handle Generate Code button click
 generate.addEventListener("click", () => {
-  if (uploadText.value.trim() === "" &&  fileInput.value === "") {
+  if (uploadText.value.trim() === "" && fileInput.value === "") {
     window.alert("You must input text or a file!");
     return;
   }
@@ -47,7 +46,7 @@ generate.addEventListener("click", () => {
   uploadResult.style.display = "block";
   uploadText.style.display = "none";
   inputgroup.style.display = "none";
-  
+
   generate.textContent = "Generate New Code";
 
   const data = {
@@ -149,62 +148,63 @@ retrieveButton.addEventListener("click", () => {
 
 // Drag and Drop
 
-
 // Update allowed file types
 const allowedTypes = {
-    'text/plain': 'Text',
-    'application/json': 'JSON',
-    'text/html': 'HTML',
-    'text/css': 'CSS',
-    'text/javascript': 'JavaScript',
-    'image/jpeg': 'Image',
-    'image/jpg': 'Image',
-    'application/pdf': 'PDF'
+  "text/plain": "Text",
+  "application/json": "JSON",
+  "text/html": "HTML",
+  "text/css": "CSS",
+  "text/javascript": "JavaScript",
+  "image/jpeg": "Image",
+  "image/jpg": "Image",
+  "application/pdf": "PDF",
 };
 
 function handleFile(file) {
   if (!file) return;
-  
+
   console.log("File type:", file.type); // For debugging
 
   // Check file size (5MB limit)
   if (file.size > 5 * 1024 * 1024) {
-      alert('File too large. Maximum size is 5MB');
-      return;
+    alert("File too large. Maximum size is 5MB");
+    return;
   }
 
   if (!allowedTypes[file.type]) {
-      alert('File type not supported. Please upload txt, json, html, css, js, jpg, or pdf files');
-      fileInput.value = '';
-      return;
+    alert(
+      "File type not supported. Please upload txt, json, html, css, js, jpg, or pdf files"
+    );
+    fileInput.value = "";
+    return;
   }
 
   // Handle different file types
-  if (file.type.startsWith('text/') || file.type === 'application/json') {
-      // Handle text files
-      handleTextFile(file);
-  } else if (file.type.startsWith('image/')) {
-      // Handle images
-      handleImageFile(file);
-  } else if (file.type === 'application/pdf') {
-      // Handle PDFs
-      handlePdfFile(file);
+  if (file.type.startsWith("text/") || file.type === "application/json") {
+    // Handle text files
+    handleTextFile(file);
+  } else if (file.type.startsWith("image/")) {
+    // Handle images
+    handleImageFile(file);
+  } else if (file.type === "application/pdf") {
+    // Handle PDFs
+    handlePdfFile(file);
   }
 }
 
 function handleTextFile(file) {
   const reader = new FileReader();
-  uploadText.value = 'Loading file...';
-  
+  uploadText.value = "Loading file...";
+
   reader.onload = (e) => {
-      uploadText.value = e.target.result;
-      console.log('Text file loaded successfully');
+    uploadText.value = e.target.result;
+    console.log("Text file loaded successfully");
   };
 
   reader.onerror = (error) => {
-      console.error('Error reading file:', error);
-      uploadText.value = '';
-      alert('Error reading file. Please try again.');
+    console.error("Error reading file:", error);
+    uploadText.value = "";
+    alert("Error reading file. Please try again.");
   };
 
   reader.readAsText(file);
@@ -212,20 +212,20 @@ function handleTextFile(file) {
 
 function handleImageFile(file) {
   const reader = new FileReader();
-  uploadText.value = 'Loading image...';
-  
+  uploadText.value = "Loading image...";
+
   reader.onload = (e) => {
-      // Store the base64 data
-      const imageData = e.target.result;
-      uploadText.value = imageData; // Store base64 string
-      
-      // Show preview
-      showPreview(imageData, 'image');
+    // Store the base64 data
+    const imageData = e.target.result;
+    uploadText.value = imageData; // Store base64 string
+
+    // Show preview
+    showPreview(imageData, "image");
   };
 
   reader.onerror = (error) => {
-      console.error('Error reading image:', error);
-      alert('Error reading image. Please try again.');
+    console.error("Error reading image:", error);
+    alert("Error reading image. Please try again.");
   };
 
   reader.readAsDataURL(file);
@@ -233,20 +233,20 @@ function handleImageFile(file) {
 
 function handlePdfFile(file) {
   const reader = new FileReader();
-  uploadText.value = 'Loading PDF...';
-  
+  uploadText.value = "Loading PDF...";
+
   reader.onload = (e) => {
-      // Store the base64 data
-      const pdfData = e.target.result;
-      uploadText.value = pdfData; // Store base64 string
-      
-      // Show preview
-      showPreview(pdfData, 'pdf');
+    // Store the base64 data
+    const pdfData = e.target.result;
+    uploadText.value = pdfData; // Store base64 string
+
+    // Show preview
+    showPreview(pdfData, "pdf");
   };
 
   reader.onerror = (error) => {
-      console.error('Error reading PDF:', error);
-      alert('Error reading PDF. Please try again.');
+    console.error("Error reading PDF:", error);
+    alert("Error reading PDF. Please try again.");
   };
 
   reader.readAsDataURL(file);
@@ -254,27 +254,27 @@ function handlePdfFile(file) {
 
 function showPreview(data, type) {
   // Create preview container if it doesn't exist
-  let previewContainer = document.getElementById('preview-container');
+  let previewContainer = document.getElementById("preview-container");
   if (!previewContainer) {
-      previewContainer = document.createElement('div');
-      previewContainer.id = 'preview-container';
-      uploadText.parentNode.insertBefore(previewContainer, uploadText);
+    previewContainer = document.createElement("div");
+    previewContainer.id = "preview-container";
+    uploadText.parentNode.insertBefore(previewContainer, uploadText);
   }
 
-  previewContainer.innerHTML = '';
+  previewContainer.innerHTML = "";
 
-  if (type === 'image') {
-      const img = document.createElement('img');
-      img.src = data;
-      img.style.maxWidth = '100%';
-      img.style.maxHeight = '300px';
-      previewContainer.appendChild(img);
-  } else if (type === 'pdf') {
-      const embed = document.createElement('embed');
-      embed.src = data;
-      embed.type = 'application/pdf';
-      embed.style.width = '100%';
-      embed.style.height = '300px';
-      previewContainer.appendChild(embed);
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = data;
+    img.style.maxWidth = "100%";
+    img.style.maxHeight = "300px";
+    previewContainer.appendChild(img);
+  } else if (type === "pdf") {
+    const embed = document.createElement("embed");
+    embed.src = data;
+    embed.type = "application/pdf";
+    embed.style.width = "100%";
+    embed.style.height = "300px";
+    previewContainer.appendChild(embed);
   }
 }
