@@ -31004,6 +31004,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fileInput = document.getElementById("fileInput");
   const inputgroup = document.getElementById("inputgroup");
 
+  
   const performanceMetrics = {
     uploadTimes: [],
     downloadTimes: [],
@@ -31233,7 +31234,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        retrievedTextDiv.textContent = storedData.text || "No text provided.";
+        retrievedTextDiv.textContent = storedData.text || "No text provided.\n";
         retrievedTextDiv.style.display = "block";
 
         if (storedData.fileUrl) {
@@ -31347,13 +31348,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleImageFile(file) {
     const reader = new FileReader();
-    uploadText.value = "Loading image...";
+    //uploadText.value = "Loading image...";
 
     reader.onload = (e) => {
       // Store the base64 data
       const imageData = e.target.result;
-      uploadText.value = imageData; // Store base64 string
-
+      //uploadText.value = "";
+      //uploadText.value = imageData; // Store base64 string
+      document.getElementById("hiddenImageData").value = imageData;
       // Show preview
       showPreview(imageData, "image");
     };
@@ -31368,13 +31370,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handlePdfFile(file) {
     const reader = new FileReader();
-    uploadText.value = "Loading PDF...";
+    uploadText.value = "";
 
     reader.onload = (e) => {
       // Store the base64 data
       const pdfData = e.target.result;
       uploadText.value = pdfData; // Store base64 string
-
+      document.getElementById("hiddenPdfData").value = pdfData;
       // Show preview
       showPreview(pdfData, "pdf");
     };
